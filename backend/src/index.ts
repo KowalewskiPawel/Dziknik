@@ -2,6 +2,7 @@ import express from 'express';
 import { pool } from './database';
 import cors from "cors";
 import helmet from "helmet";
+import { bodySanitizer } from './middlewares';
 
 const app = express();
 const PORT = 3000;
@@ -11,6 +12,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(cors());
 app.use(helmet());
+
+app.use(bodySanitizer);
 
 app.get('/', async (req, res) => {
     try {
