@@ -1,8 +1,16 @@
 import express from 'express';
 import { pool } from './database';
+import cors from "cors";
+import helmet from "helmet";
 
 const app = express();
 const PORT = 3000;
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use(cors());
+app.use(helmet());
 
 app.get('/', async (req, res) => {
     try {
