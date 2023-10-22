@@ -1,5 +1,10 @@
 import { Request, Response } from "express";
-import { hashPassword, validateUser } from "../utils";
+import {
+  comparePasswords,
+  generateJWT,
+  hashPassword,
+  validateUser,
+} from "../utils";
 import { pool } from "../database";
 
 export class UsersController {
@@ -28,6 +33,39 @@ export class UsersController {
       );
 
       res.status(201).json(newUser.rows[0]);
+    } catch (err: any) {
+      console.error(err.message);
+      res.status(500).send("Server error");
+    }
+  }
+
+  async login(req: Request, res: Response) {
+    try {
+      const { username, password } = req.body;
+
+      // Check if user exists
+      const user = await pool.query("SELECT * FROM users WHERE username = $1", [
+        username,
+      ]);
+
+      if (user.rows.length === 0) {
+        return res.status(401).json("Invalid credentials");
+      }
+
+      // Check password
+      const validPassword = await comparePasswords(
+        password,
+        user.rows[0].password
+      );
+
+      if (!validPassword) {
+        return res.status(401).json("Invalid credentials");
+      }
+
+      // Generate and return a JWT token
+      const token = await generateJWT(user.rows[0].id);
+
+      res.json({ token });
     } catch (err: any) {
       console.error(err.message);
       res.status(500).send("Server error");

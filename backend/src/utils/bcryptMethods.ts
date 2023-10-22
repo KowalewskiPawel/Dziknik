@@ -9,3 +9,14 @@ export const hashPassword = async (password: string) => {
     throw new Error(`Hashing failed error: ${JSON.stringify(error)}`);
   }
 };
+
+export const comparePasswords = async (
+  inputPassword: string,
+  hashedPassword: string
+) => {
+  try {
+    return await bcrypt.compare(inputPassword, hashedPassword);
+  } catch (error) {
+    throw new Error(`Comparison failed: ${JSON.stringify(error)}`);
+  }
+};
