@@ -4,9 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "yarn build && node src/index.js",
+    "start": "node src/index.js",
     "dev": "nodemon",
-    "build": "tsc"
+    "build": "yarn && tsc"
   },
   "dependencies": {
     "@types/pg": "^8.10.7",
