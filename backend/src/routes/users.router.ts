@@ -22,6 +22,8 @@ export const usersRouter = Router()
    *                 type: string
    *               password:
    *                 type: string
+   *               confirmPassword:
+   *                 type: string
    *               email:
    *                 type: string
    *     responses:
