@@ -6,15 +6,23 @@ const options = {
   expiresIn: "1h",
 };
 
-export const generateJWT = async (userId: number) => {
+export const generateJWT = async (userId: number, username: string) => {
   try {
-    const payload = { userId };
+    const payload = { id: userId, username };
     const token = await jwt.sign(
       payload,
       process.env.JWT_SECRET as string,
       options
     );
     return token;
+  } catch (error) {
+    throw new Error("Generating JWT failed");
+  }
+};
+
+export const validateJWT = async (token: string) => {
+  try {
+    return jwt.verify(token, process.env.JWT_SECRET as string);
   } catch (error) {
     throw new Error("Generating JWT failed");
   }

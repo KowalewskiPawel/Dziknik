@@ -1,4 +1,3 @@
-import { Request, Response } from "express";
 import {
   comparePasswords,
   generateJWT,
@@ -6,6 +5,7 @@ import {
   validateUser,
 } from "../utils";
 import { pool } from "../database";
+import type { Request, Response, RequestWithUser } from "../types";
 
 export class UsersController {
   async signup(req: Request, res: Response) {
@@ -63,9 +63,18 @@ export class UsersController {
       }
 
       // Generate and return a JWT token
-      const token = await generateJWT(user.rows[0].id);
+      const token = await generateJWT(user.rows[0].id, username);
 
       res.json({ token });
+    } catch (err: any) {
+      console.error(err.message);
+      res.status(500).send("Server error");
+    }
+  }
+
+  async protected(req: RequestWithUser, res: Response) {
+    try {
+      res.status(200).json(`User Logged in: ${req.user}`);
     } catch (err: any) {
       console.error(err.message);
       res.status(500).send("Server error");

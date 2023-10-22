@@ -1,9 +1,4 @@
-type User = {
-  username?: string;
-  email?: string;
-  password?: string;
-  confirmPassword?: string;
-};
+import { User } from "../types";
 
 export const validateUser = (user: User): string | null => {
   // Check for username
