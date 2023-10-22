@@ -1,5 +1,5 @@
 import { validateJWT } from "../utils";
-import { Request, Response, NextFunction, RequestWithUser } from "../types";
+import { Response, NextFunction, RequestWithUser } from "../types";
 
 type UserPayload = {
   id: string;

@@ -1,9 +1,11 @@
 import express from "express";
-import { pool } from "./database";
 import cors from "cors";
 import helmet from "helmet";
+import swaggerUi from 'swagger-ui-express';
+import { pool } from "./database";
 import { bodySanitizer } from "./middlewares";
 import { usersRouter } from "./routes";
+import { swaggerDocs } from "./swagger";
 
 const app = express();
 const PORT = 3000;
@@ -15,6 +17,8 @@ app.use(cors());
 app.use(helmet());
 
 app.use(bodySanitizer);
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.use("/users", usersRouter);
 
