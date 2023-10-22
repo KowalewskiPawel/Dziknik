@@ -5,7 +5,7 @@ import swaggerUi from "swagger-ui-express";
 import dotenv from "dotenv";
 import { pool } from "./database";
 import { bodySanitizer } from "./middlewares";
-import { usersRouter } from "./routes";
+import { exercisesRouter, trainingsRouter, usersRouter } from "./routes";
 import { swaggerDocs } from "./swagger";
 
 dotenv.config();
@@ -21,7 +21,9 @@ app
   .use(helmet())
   .use(bodySanitizer)
   .use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs))
-  .use("/users", usersRouter);
+  .use("/api/users", usersRouter)
+  .use("/api/exercises", exercisesRouter)
+  .use("/api/training-plans", trainingsRouter);
 
 app.get("/", async (_req, res) => {
   try {

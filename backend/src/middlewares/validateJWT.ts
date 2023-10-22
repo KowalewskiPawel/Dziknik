@@ -2,8 +2,8 @@ import { validateJWT } from "../utils";
 import { Response, NextFunction, RequestWithUser } from "../types";
 
 type UserPayload = {
-  id: string;
-  username: string;
+  userId?: number;
+  username?: string;
   iat?: number;
   exp?: number;
 };
@@ -22,6 +22,7 @@ export const authJWT = async (
   try {
     const decoded = (await validateJWT(token)) as UserPayload;
     req.user = decoded.username;
+    req.userId = decoded.userId;
     next();
   } catch (err) {
     res.status(401).json("Token is not valid");

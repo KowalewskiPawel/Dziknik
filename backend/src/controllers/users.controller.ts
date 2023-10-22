@@ -63,7 +63,7 @@ export class UsersController {
       }
 
       // Generate and return a JWT token
-      const token = await generateJWT(user.rows[0].id, username);
+      const token = await generateJWT(user.rows[0].user_id, username);
 
       res.json({ token });
     } catch (err: any) {

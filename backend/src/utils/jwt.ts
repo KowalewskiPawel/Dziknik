@@ -8,7 +8,7 @@ const options = {
 
 export const generateJWT = async (userId: number, username: string) => {
   try {
-    const payload = { id: userId, username };
+    const payload = { userId, username };
     const token = await jwt.sign(
       payload,
       process.env.JWT_SECRET as string,
