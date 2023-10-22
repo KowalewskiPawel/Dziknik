@@ -25,7 +25,7 @@ app
   .use("/api/exercises", exercisesRouter)
   .use("/api/training-plans", trainingsRouter);
 
-app.get("/", async (_req, res) => {
+app.get("/db_health_check", async (_req, res) => {
   try {
     const result = await pool.query("SELECT NOW()");
     res.json(result.rows[0]);
