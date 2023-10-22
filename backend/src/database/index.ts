@@ -1,3 +1,1 @@
-import { pool } from "./database";
-
-export { pool };
+export { pool } from "./database";
