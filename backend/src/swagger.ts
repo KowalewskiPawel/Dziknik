@@ -1,4 +1,6 @@
 import swaggerJsDoc from "swagger-jsdoc";
+import dotenv from "dotenv";
+dotenv.config();
 
 const swaggerOptions = {
   swaggerDefinition: {
@@ -20,7 +22,7 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: "http://localhost:3000/api/",
+        url: `${process.env.DEPLOY_SERVER}/api/`,
       },
     ],
   },
