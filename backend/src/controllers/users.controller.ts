@@ -1,26 +1,18 @@
 import { Request, Response } from "express";
-import Joi from "joi";
-import { hashPassword } from "../utils";
+import { hashPassword, validateUser } from "../utils";
 import { pool } from "../database";
-
-const userSchema = Joi.object().keys({
-  username: Joi.string().required().min(4),
-  email: Joi.string().email({ minDomainSegments: 2 }),
-  password: Joi.string().required().min(4),
-  confirmPassword: Joi.string().valid(Joi.ref("password")).required(),
-});
 
 export class UsersController {
   async signup(req: Request, res: Response) {
     try {
       // validate body
-      const result = userSchema.validate(req.body);
-      if (result.error) {
-        console.log(result.error.message);
+      const validationError = validateUser(req.body);
+
+      if (validationError) {
         return res.status(400).json({
           error: true,
           status: 400,
-          message: result.error.message,
+          message: validationError,
         });
       }
 
