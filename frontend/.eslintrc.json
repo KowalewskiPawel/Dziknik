@@ -1,0 +1,46 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "airbnb",
+    "airbnb-typescript",
+    "airbnb/hooks",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": "./frontend/tsconfig.json"
+  },
+  "plugins": ["react", "@typescript-eslint", "prettier"],
+  "rules": {
+    "react/react-in-jsx-scope": 0,
+    "arrow-body-style": "error",
+    "prettier/prettier": "error",
+    "import/prefer-default-export": "off",
+    "import/no-default-export": "warn",
+    "react/jsx-props-no-spreading": "off",
+    "react/prop-types": "error",
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+    "@typescript-eslint/default-param-last": "off",
+    "@typescript-eslint/no-throw-literal": "warn",
+    "@typescript-eslint/quotes": "off",
+    "@typescript-eslint/indent": "off"
+  },
+    "overrides": [
+    {
+      "files": ["**/*.stories.*", "**/*.test.*", "**/*.spec.*"],
+      "rules": {
+        "import/no-extraneous-dependencies": "off",
+        "import/no-default-export": "off",
+        "react/prop-types": "off"
+      }
+    }
+  ]
+}
