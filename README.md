@@ -1,5 +1,9 @@
 # Dziknik
 
+<p align="center">
+    <img src="./dziknik-logo.png" alt="dziknik-logo" width="200px"/>
+</p>
+
 Dziknik is a comprehensive fitness platform designed for enthusiasts and professionals alike. It allows users to create, share, and follow training plans, ensuring a holistic approach to fitness. Whether you're looking to start your fitness journey or aiming to break your records, Dziknik is here to guide you.
 
 ## Structure
@@ -37,10 +41,13 @@ git clone https://github.com/KowalewskiPawel/Dziknik.git
 3. Follow the README.md instructions inside each directory for detailed setup and running instructions.
 
 ### Contributing
+
 Contributions to Dziknik are always welcome. Whether it's feature enhancements, bug fixes, or documentation improvements, your efforts are appreciated. Please fork the repository and create a pull request for any changes.
 
 ### License
+
 Dziknik is licensed under the Apache 2.0 License. Check out the LICENSE file for more details.
 
 ### Acknowledgements
+
 A special thanks to all contributors, supporters, and fitness enthusiasts who've made Dziknik possible.
