@@ -1,12 +1,9 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import styles from "./LoginPage.module.scss";
 
 const LoginPage = () => {
 	return (
-		<div>LoginPage</div>
+		<div className={styles.login__container}>LoginPage</div>
 	)
 }
-
-// LoginPage.propTypes = {}
 
 export default LoginPage
